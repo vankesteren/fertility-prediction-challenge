@@ -5,3 +5,7 @@
 .LSOverride
 __pycache__/
 .tool-versions
+.Rproj.user
+/data
+predictions.csv
+.Rhistory

@@ -1,0 +1,8 @@
+# local test
+docker build --file r.Dockerfile . -t eyra-rank:latest
+
+docker run --rm -v ".:/data" eyra-rank:latest /data/PreFer_fake_data.csv /data/PreFer_fake_background_data.csv --output /data/predictions.csv
+
+docker build --file python.Dockerfile . -t eyra-rank:scoring
+
+docker run --rm -v ".:/data" --entrypoint conda eyra-rank:scoring run -n eyra-rank python /app/score.py /data/predictions.csv /data/PreFer_fake_outcome.csv
